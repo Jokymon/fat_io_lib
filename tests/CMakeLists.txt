@@ -9,12 +9,17 @@ ExternalProject_Add(
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/install
 )
 
-include_directories(${CMAKE_BINARY_DIR}/install/include)
+include_directories(
+    ${CMAKE_SOURCE_DIR}
+    ${CMAKE_BINARY_DIR}/install/include
+)
+
+file(GLOB TESTING_SRCS "*.cc")
 
 add_library(imp_cpputest STATIC IMPORTED)
 set_property(TARGET imp_cpputest PROPERTY
              IMPORTED_LOCATION ${CMAKE_BINARY_DIR}/install/lib/libCppUTest.a)
 
-add_executable(fat_test test_main.cc)
-target_link_libraries(fat_test imp_cpputest)
+add_executable(fat_test ${TESTING_SRCS})
+target_link_libraries(fat_test imp_cpputest fat_io_lib)
 
