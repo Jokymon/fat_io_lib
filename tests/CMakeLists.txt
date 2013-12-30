@@ -14,7 +14,12 @@ include_directories(
     ${CMAKE_BINARY_DIR}/install/include
 )
 
-file(GLOB TESTING_SRCS "*.cc")
+set(TESTING_SRCS
+    test_access.cc
+    test_misc.cc
+    test_string.cc
+
+    test_main.cc)
 
 add_library(imp_cpputest STATIC IMPORTED)
 set_property(TARGET imp_cpputest PROPERTY

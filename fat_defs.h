@@ -81,7 +81,6 @@
 #define FILE_HEADER_BLANK               0x00
 #define FILE_HEADER_DELETED             0xE5
 #define FILE_TYPE_DIR                   0x10
-#define FILE_TYPE_FILE                  0x20
 
 //-----------------------------------------------------------------------------
 // Time / Date details

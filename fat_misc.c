@@ -181,10 +181,10 @@ int fatfs_entry_is_dir(struct fat_dir_entry *entry)
 //-----------------------------------------------------------------------------
 int fatfs_entry_is_file(struct fat_dir_entry *entry)
 {
-    if (entry->Attr & FILE_TYPE_FILE)
-        return 1;
-    else
+    if (entry->Attr & FILE_TYPE_DIR)
         return 0;
+    else
+        return 1;
 }
 //-----------------------------------------------------------------------------
 // fatfs_lfn_entries_required: Calculate number of 13 characters entries
@@ -266,9 +266,7 @@ void fatfs_sfn_create_entry(char *shortfilename, uint32 size, uint32 startCluste
     entry->WrtDate[1] = 0x00;
     entry->WrtDate[0] = 0x20;
 
-    if (!dir)
-        entry->Attr = FILE_TYPE_FILE;
-    else
+    if (dir)
         entry->Attr = FILE_TYPE_DIR;
 
     entry->NTRes = 0x00;
