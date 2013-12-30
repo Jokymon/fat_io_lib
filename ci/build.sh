@@ -7,4 +7,4 @@ cd ${builddir}
 
 cmake ..
 make
-make test
+tests/fat_test
