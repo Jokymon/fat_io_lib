@@ -1,4 +1,10 @@
 #!/bin/bash -e
-cmake
+
+builddir="${TRAVIS_BUILD_DIR}/build"
+
+mkdir -p ${builddir}
+cd ${builddir}
+
+cmake ..
 make
 make test
